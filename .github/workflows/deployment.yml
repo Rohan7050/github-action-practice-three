@@ -1,0 +1,34 @@
+# name of the workflow
+name: "Deployment"
+# triggers
+on: [push, workflow_dispatch]
+# jobs i want to execute
+jobs:
+  # name of the job 
+  test:
+    #  machine on which job is executed
+    runs-on: ubuntu-latest
+    #  steps to execute this job
+    steps:
+      - name: "checkout code"
+        uses: actions/chechout@v4
+      - name: "install Dependencies"
+        run: npm ci
+      - name: "Run linting tests"
+        run: | 
+          echo "running linting"
+          npm run lint
+          echo "running tests"
+          npm run test
+  deploy:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: "checkout code"
+        uses: actions/chechout@v4
+      - name: "install Dependencies"
+        run: npm ci
+      - name: "create build"
+        run: npm run build
+      - name: "Deploy code"
+        run: echo "deploying code"
