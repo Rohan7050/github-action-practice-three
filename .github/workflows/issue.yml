@@ -1,0 +1,8 @@
+name: "Cheching context"
+on: [issues, workflow_dispatch]
+jobs:
+  printing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "print out context"
+        run: echo "${{ toJson(github.event) }}"
