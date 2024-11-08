@@ -11,7 +11,7 @@ jobs:
     #  steps to execute this job
     steps:
       - name: "checkout code"
-        uses: actions/chechout@v4
+        uses: actions/checkout@v4
       - name: "install Dependencies"
         run: npm ci
       - name: "Run linting tests"
@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "checkout code"
-        uses: actions/chechout@v4
+        uses: actions/checkout@v4
       - name: "install Dependencies"
         run: npm ci
       - name: "create build"
